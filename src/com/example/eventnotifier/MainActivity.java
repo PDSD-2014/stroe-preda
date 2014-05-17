@@ -17,7 +17,8 @@ import android.widget.Button;
 public class MainActivity extends Activity {
 	
 	Activity context;
-	//Database database;
+	Database database;
+	
 	//private static final String url = "jdbc:mysql://sql3.freemysqlhosting.net:3306/sql339866";
 	//private static final String user = "sql339866";
 	//private static final String password = "kL5!cS2!";
@@ -28,7 +29,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		context = this;
-		//database = Database.getInstance(this);
+		database = Database.getInstance(this);
 		
 		Button start = (Button) findViewById(R.id.startButton);
 		start.setOnClickListener(new View.OnClickListener() {
@@ -39,30 +40,65 @@ public class MainActivity extends Activity {
 				System.out.println("buton");
 				Intent intent = new Intent(MainActivity.this, CategoriesActivity.class);
 				startActivity(intent);
+				//populateDB();
+				database.selectSport();
 			}
 		});
 
 	}
-/*
-	public void testDB(){
-		try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection(url, user, password);
-             System.out.println("Database connection success"); 
-             Log.d("MyApp","I am here");
-            String result = "Database connection success\n";
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM Sport");
-            ResultSetMetaData rsmd = rs.getMetaData();
-          //  System.out.println(rsmd);
-          
-	}catch(Exception e){
-		e.printStackTrace();
-		Log.d("MyApp","Noooooooooooooooooooooooooooooooooooooooooooooooooooo");}
+
+	public void populateDB(){
+		Sport sport = new Sport(2, "S-au pus in vanzare biletele pentru meciul Steaua-Astra de vineri 23 mai 2014" , 2);
+		
+		Weather weather1 = new Weather(1, "Cod portocaliu in 5 judete din tara. Sunt asteptate precipitatii abundente", 1);
+		Weather weather2 = new Weather(2, "Se anunta o vara secetoasa. Temperaturile vor depasi mediile anuale in toate regiunile tarii", 2);
+		
+		Traffic traffic1 = new Traffic(1, "Traficul pe Calea Victoriei este ingreunat din cauza lucrarilor de amenajare", 1);
+		Traffic traffic2 = new Traffic(2, "Transalpina si Transfagarasan se vor deschide circulatiei pe 1 iunie", 2);
+		
+		Cinema cinema1 = new Cinema(1, "Doua noi filme americane vor fi filmate in Romania", 1);
+		Cinema cinema2 = new Cinema(2, "Weekendul acesta au loc premiile de la Cannes", 2);
+		
+		Holidays holidays1 = new Holidays(1, "Bugetarii vor avea liber de Rusalii luni 9 iunie", 1);
+		Holidays holidays2 = new Holidays(2, "Anul acesta de ziua Marinei vor avea loc festivitati speciale la Constanta", 2);
+		
+		FreeTime freeTime1 = new FreeTime(1, "Bucurestenii pot inchiria biciclete in Parcul Herastrau de la un nou centru aflat la intrarea de la Arcul de Triumf", 1);
+		FreeTime freeTime2 = new FreeTime(2, "Sambata va avea loc Noaptea Alba a Muzeelor in toata tara", 1);
+		
+		Notices notices1 = new Notices(1, "Statul Roman recomanda cetatenilor sa nu calatoreasca in Ucraina in perioada urmatoare", 1);
+		Notices notices2 = new Notices(2, "Ministerul Educatiei anunta noi schimbari pentru urmatorul an scolar", 2);
+		
+		Foreign foreign1 = new Foreign(1, "Relatii tensionate intre Rusia si Ucraina", 1);
+		Foreign foreign2 = new Foreign(2, "Romanii sunt mai aproape de a calatori fara viza in America", 2);
+		
+		//add entries to database
+		database.addSport(sport);
+		
+		database.addWeather(weather1);
+		database.addWeather(weather2);
+		
+		database.addTraffic(traffic1);
+		database.addTraffic(traffic2);
+		
+		database.addCinema(cinema1);
+		database.addCinema(cinema2);
+		
+		database.addHolidays(holidays1);
+		database.addHolidays(holidays2);
+		
+		database.addFreeTime(freeTime1);
+		database.addFreeTime(freeTime2);
+		
+		database.addNotices(notices1);
+		database.addNotices(notices2);
+		
+		database.addForeign(foreign1);
+		database.addForeign(foreign2);
+		
+		Log.d("Sport: ", sport.toString());
 		
 		
 	}
-*/
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 

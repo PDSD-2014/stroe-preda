@@ -10,6 +10,7 @@ import android.util.Log;
 
 	public class SingleThreadedServer implements Runnable {
 		private String greeting = "Hello world";
+		int step = 0;
 		boolean ok = true;
 		 
 		private final static String TAG = "ServerThread";
@@ -47,6 +48,7 @@ import android.util.Log;
 					
 						// We use the incomingRequest socket for I/O
 						Log.d(TAG, "New request from: " + incomingRequest.getInetAddress());
+						step = step+1;
 		 
 						// Get its associated OutputStream for writing.
 						OutputStream responseStream = null;
@@ -63,7 +65,7 @@ import android.util.Log;
 						}
 						// Wrap it with a PrinStream for convenience.
 						PrintStream writer = new PrintStream(responseStream);
-						writer.print(greeting);
+						writer.print(step);
 		 
 						// Make sure data is sent and allocated resources are cleared.
 						try {

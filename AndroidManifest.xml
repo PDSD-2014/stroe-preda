@@ -29,7 +29,25 @@
 			android:name=".CategoriesActivity">
 		</activity>
 		<activity 
-			android:name=".CategoryActivity">
+			android:name=".SportActivity">
+		</activity>
+		<activity 
+			android:name=".NoticesActivity">
+		</activity>
+		<activity 
+			android:name=".TrafficActivity">
+		</activity>
+		<activity 
+			android:name=".HolidaysActivity">
+		</activity>
+		<activity 
+			android:name=".WeatherActivity">
+		</activity>
+		<activity 
+			android:name=".FreeTimeActivity">
+		</activity>
+		<activity 
+			android:name=".CinemaActivity">
 		</activity>
     </application>
 

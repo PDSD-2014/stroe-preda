@@ -14,13 +14,7 @@ public class Database extends SQLiteOpenHelper {
 
 	public static final String DATABASE_NAME = "eventNotifier";
 	public static final int DATABASE_VERSION = 1;
-	
-	
-	public static final String ASSOCIATIONS_COURSE_TEACHER_TABLE_NAME = "associations_courses_teachers";
-	public static final String ASSOCIATION_COURSE_TEACHER_ID = "association_course_teacher_id";
-	public static final String COURSES_TABLE_NAME = "courses";
-	public static final String COURSE_ID = "course_id";
-	public static final String COURSE_NAME = "name";
+
 	public static final String TEACHERS_TABLE_NAME = "teachers";
 	public static final String TEACHER_ID = "teacher_id";
 	public static final String TEACHER_NAME = "name";
@@ -60,11 +54,6 @@ public class Database extends SQLiteOpenHelper {
 	public static final String NOTICES_ID = "id";
 	public static final String NOTICES_DESCRIPTION = "description";
 	public static final String NOTICES_COLOUR = "colour";
-	
-	public static final String FOREIGN_TABLE_NAME = "foreign";
-	public static final String FOREIGN_ID = "id";
-	public static final String FOREIGN_DESCRIPTION = "description";
-	public static final String FOREIGN_COLOUR = "colour";
 	
 	private static Database instance;
 	
@@ -118,16 +107,6 @@ public class Database extends SQLiteOpenHelper {
 				+ NOTICES_DESCRIPTION + " TEXT, "
 				+ NOTICES_COLOUR + " INTEGER)";
 		
-		String CREATE_FOREIGN_TABLE = "CREATE TABLE " + FOREIGN_TABLE_NAME + "("
-				+ FOREIGN_ID + " INTEGER PRIMARY KEY, "
-				+ FOREIGN_DESCRIPTION + " TEXT, "
-				+ FOREIGN_COLOUR + " INTEGER)";
-		
-		
-		/*String CREATE_TEACHERS_TABLE = "CREATE TABLE " + TEACHERS_TABLE_NAME + "("
-				+ TEACHER_ID + " INTEGER PRIMARY KEY, "
-				+ TEACHER_NAME + " TEXT)";	*/
-		
 		db.execSQL(CREATE_SPORT_TABLE);
 		db.execSQL(CREATE_WEATHER_TABLE);
 		db.execSQL(CREATE_TRAFFIC_TABLE);
@@ -135,8 +114,6 @@ public class Database extends SQLiteOpenHelper {
 		db.execSQL(CREATE_HOLIDAYS_TABLE);
 		db.execSQL(CREATE_FREETIME_TABLE);
 		db.execSQL(CREATE_NOTICES_TABLE);
-		db.execSQL(CREATE_FOREIGN_TABLE);
-		//db.execSQL(CREATE_TEACHERS_TABLE);
 		
 	}
 
@@ -149,8 +126,6 @@ public class Database extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXISTS " + HOLIDAYS_TABLE_NAME);
 		db.execSQL("DROP TABLE IF EXISTS " + FREETIME_TABLE_NAME);
 		db.execSQL("DROP TABLE IF EXISTS " + NOTICES_TABLE_NAME);
-		db.execSQL("DROP TABLE IF EXISTS " + FOREIGN_TABLE_NAME);
-		db.execSQL("DROP TABLE IF EXISTS " + TEACHERS_TABLE_NAME);
 		
 		onCreate(db);
 	}
@@ -233,7 +208,7 @@ public class Database extends SQLiteOpenHelper {
 		contentValues.put(FREETIME_DESCRIPTION, freeTime.getDescription());
 		contentValues.put(FREETIME_COLOUR, freeTime.getColour());
 		
-		db.insert(HOLIDAYS_TABLE_NAME, null, contentValues);
+		db.insert(FREETIME_TABLE_NAME, null, contentValues);
 		
 		db.close();
 
@@ -248,23 +223,9 @@ public class Database extends SQLiteOpenHelper {
 		contentValues.put(NOTICES_DESCRIPTION, notices.getDescription());
 		contentValues.put(NOTICES_COLOUR, notices.getColour());
 		
-		db.insert(HOLIDAYS_TABLE_NAME, null, contentValues);
+		db.insert(NOTICES_TABLE_NAME, null, contentValues);
 		
 		db.close();
-	}
-	
-	public void addForeign(Foreign foreign){
-		SQLiteDatabase db = this.getWritableDatabase();
-		
-		ContentValues contentValues = new ContentValues();
-		contentValues.put(FOREIGN_ID, foreign.getId());
-		contentValues.put(FOREIGN_DESCRIPTION, foreign.getColour());
-		contentValues.put(FOREIGN_COLOUR, foreign.getColour());
-		
-		db.insert(HOLIDAYS_TABLE_NAME, null, contentValues);
-		
-		db.close();
-		
 	}
 	
 	/*public void addTeacher(Teacher teacher) {
@@ -297,6 +258,138 @@ public class Database extends SQLiteOpenHelper {
 			} while (cursor.moveToNext());
 		}
 		Log.d("Sport: ", result.toString());
+		return result;
+		
+	}
+	
+	public List<Weather> selectWeather(){
+		SQLiteDatabase db = this.getReadableDatabase();
+		String SELECT_WEATHER_QUERY;
+		
+		SELECT_WEATHER_QUERY = "SELECT * FROM " + WEATHER_TABLE_NAME;
+		Cursor cursor = db.rawQuery(SELECT_WEATHER_QUERY, null);
+		ArrayList<Weather> result = new ArrayList<Weather>();
+		
+		if (cursor.moveToFirst()) {			
+			do {
+				Weather weather = new Weather();
+				weather.setId(Integer.parseInt(cursor.getString(0)));
+				weather.setDescription(cursor.getString(1));
+				weather.setColour(Integer.parseInt(cursor.getString(2)));
+				result.add(weather);
+			} while (cursor.moveToNext());
+		}
+		Log.d("Weather: ", result.toString());
+		return result;
+		
+	}
+	
+	public List<Traffic> selectTraffic(){
+		SQLiteDatabase db = this.getReadableDatabase();
+		String SELECT_TRAFFIC_QUERY;
+		
+		SELECT_TRAFFIC_QUERY = "SELECT * FROM " + TRAFFIC_TABLE_NAME;
+		Cursor cursor = db.rawQuery(SELECT_TRAFFIC_QUERY, null);
+		ArrayList<Traffic> result = new ArrayList<Traffic>();
+		
+		if (cursor.moveToFirst()) {			
+			do {
+				Traffic traffic = new Traffic();
+				traffic.setId(Integer.parseInt(cursor.getString(0)));
+				traffic.setDescription(cursor.getString(1));
+				traffic.setColour(Integer.parseInt(cursor.getString(2)));
+				result.add(traffic);
+			} while (cursor.moveToNext());
+		}
+		Log.d("Traffic: ", result.toString());
+		return result;
+		
+	}
+	
+	public List<Cinema> selectCinema(){
+		SQLiteDatabase db = this.getReadableDatabase();
+		String SELECT_CINEMA_QUERY;
+		
+		SELECT_CINEMA_QUERY = "SELECT * FROM " + CINEMA_TABLE_NAME;
+		Cursor cursor = db.rawQuery(SELECT_CINEMA_QUERY, null);
+		ArrayList<Cinema> result = new ArrayList<Cinema>();
+		
+		if (cursor.moveToFirst()) {			
+			do {
+				Cinema cinema = new Cinema();
+				cinema.setId(Integer.parseInt(cursor.getString(0)));
+				cinema.setDescription(cursor.getString(1));
+				cinema.setColour(Integer.parseInt(cursor.getString(2)));
+				result.add(cinema);
+			} while (cursor.moveToNext());
+		}
+		Log.d("Cinema: ", result.toString());
+		return result;
+		
+	}
+	
+	public List<Holidays> selectHolidays(){
+		SQLiteDatabase db = this.getReadableDatabase();
+		String SELECT_HOLIDAYS_QUERY;
+		
+		SELECT_HOLIDAYS_QUERY = "SELECT * FROM " + HOLIDAYS_TABLE_NAME;
+		Cursor cursor = db.rawQuery(SELECT_HOLIDAYS_QUERY, null);
+		ArrayList<Holidays> result = new ArrayList<Holidays>();
+		
+		if (cursor.moveToFirst()) {			
+			do {
+				Holidays holidays = new Holidays();
+				holidays.setId(Integer.parseInt(cursor.getString(0)));
+				holidays.setDescription(cursor.getString(1));
+				holidays.setColour(Integer.parseInt(cursor.getString(2)));
+				result.add(holidays);
+			} while (cursor.moveToNext());
+		}
+		Log.d("Holidays: ", result.toString());
+		return result;
+		
+	}
+	
+	public List<FreeTime> selectFreeTime(){
+		SQLiteDatabase db = this.getReadableDatabase();
+		String SELECT_FREETIME_QUERY;
+		
+		SELECT_FREETIME_QUERY = "SELECT * FROM " + FREETIME_TABLE_NAME;
+		Cursor cursor = db.rawQuery(SELECT_FREETIME_QUERY, null);
+		ArrayList<FreeTime> result = new ArrayList<FreeTime>();
+		
+		if (cursor.moveToFirst()) {			
+			do {
+				FreeTime freeTime = new FreeTime();
+				freeTime.setId(Integer.parseInt(cursor.getString(0)));
+				freeTime.setDescription(cursor.getString(1));
+				freeTime.setColour(Integer.parseInt(cursor.getString(2)));
+				result.add(freeTime);
+			} while (cursor.moveToNext());
+		}
+		Log.d("FreeTime: ", result.toString());
+		return result;
+		
+	}
+	
+	public List<Notices> selectNotices(){
+		SQLiteDatabase db = this.getReadableDatabase();
+		String SELECT_NOTICES_QUERY;
+		
+		SELECT_NOTICES_QUERY = "SELECT * FROM " + NOTICES_TABLE_NAME;
+		Cursor cursor = db.rawQuery(SELECT_NOTICES_QUERY, null);
+		ArrayList<Notices> result = new ArrayList<Notices>();
+		
+		if (cursor.moveToFirst()) {			
+			do {
+				Notices notices = new Notices();
+				notices.setId(Integer.parseInt(cursor.getString(0)));
+				notices.setDescription(cursor.getString(1));
+				notices.setColour(Integer.parseInt(cursor.getString(2)));
+				result.add(notices);
+			} while (cursor.moveToNext());
+		}
+		Log.d("Notices: ", result.toString());
 		return result;
 		
 	}

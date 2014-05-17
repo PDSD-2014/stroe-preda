@@ -12,15 +12,29 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class CategoriesActivity extends Activity {
+	
+	class Item{
+	    private String name;
+	    public void setName(String name){
+	        this.name = name;
+	    }
+	    public String getName(){
+	        return name;
+	    }
+	    public String toString(){
+	        return name; 
+	    }
+	}
 
 	@Override
 	protected void onCreate (Bundle icicle) {
 		super.onCreate(icicle);
 		setContentView(R.layout.categories_main);
 		try {
-			ListView listView1 = (ListView)findViewById(R.id.listViewCat);
+			final ListView listView1 = (ListView)findViewById(R.id.listViewCat);
 			CategoriesXmlParser categoriesXmlParser = new CategoriesXmlParser();
 			InputStream inputstream = getAssets().open("categories.xml");
 			ArrayList<Category> categories = categoriesXmlParser.parse(inputstream);
@@ -31,13 +45,51 @@ public class CategoriesActivity extends Activity {
 
 			listView1.setOnItemClickListener(new OnItemClickListener() {
 			    public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-			        //String text = mStrings[position];
-			        //YourImageClass img = mImages[position];
-			        Intent i = new Intent(CategoriesActivity.this, CategoryActivity.class);
-			        startActivity(i);
-			    	//i.putExtra("TEXT", text);
-			        //i.putExtra("IMAGE", i
-			    	Log.println(Log.INFO,"Hello!", "Clicked! YAY!");
+
+			    	String fullText = parent.getItemAtPosition(position).toString();
+			    	int end = fullText.indexOf("description:");
+			    	String name = fullText.substring(6, end);
+			    	Log.d("tag", "AAAAAAAAAAAAAAAAAA " + name + name.length());
+			    	
+			    	Intent i;
+			    	if (name.equals("Sport ")) {
+			    		i = new Intent(CategoriesActivity.this, SportActivity.class); 
+			    		startActivity(i);
+			    	}
+			    	
+			    	if (name.equals("Notices ")) {
+			    		i = new Intent(CategoriesActivity.this, NoticesActivity.class); 
+			    		startActivity(i);
+			    		//Log.d("tag", "NOTICESSSSSSSSSSSS");
+			    	}
+			    	
+			    	if (name.equals("Cinema ")) {
+			    		i = new Intent(CategoriesActivity.this, CinemaActivity.class); 
+			    		startActivity(i);
+			    		//Log.d("tag", "CINEMAAAAA");
+			    	}
+			    	
+			    	if (name.equals("Leisure ")) {
+			    		i = new Intent(CategoriesActivity.this, FreeTimeActivity.class); 
+			    		startActivity(i);
+			    		//Log.d("tag", "LEISUREEEE");
+			    	}
+			    	
+			    	
+			    	if (name.equals("Holidays ")) {
+			    		i = new Intent(CategoriesActivity.this, HolidaysActivity.class); 
+			    		startActivity(i);
+			    	}
+			    	
+			    	if (name.equals("Traffic ")) {
+			    		i = new Intent(CategoriesActivity.this, TrafficActivity.class); 
+			    		startActivity(i);
+			    	}
+			    	
+			    	if (name.equals("Weather ")) {
+			    		i = new Intent(CategoriesActivity.this, WeatherActivity.class); 
+			    		startActivity(i);
+			    	}
 			    }
 			});
 					

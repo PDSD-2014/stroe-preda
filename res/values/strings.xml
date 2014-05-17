@@ -9,5 +9,13 @@
     <string name="back">Go back!</string>
     
     <string name="content_description">Category Logo</string>
+    
+    <string name="sport_screen">SPORT</string>
+    <string name="cinema_screen">CINEMA</string>
+    <string name="traffic_screen">TRAFFIC</string>
+    <string name="leisure_screen">LEISURE</string>
+    <string name="notices_screen">NOTICES</string>
+    <string name="holidays_screen">HOLIDAYS</string>
+    <string name="weather_screen">WEATHER</string>   
 
 </resources>

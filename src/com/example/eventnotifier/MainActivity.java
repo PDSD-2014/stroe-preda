@@ -17,19 +17,18 @@ import android.widget.Button;
 public class MainActivity extends Activity {
 	
 	Activity context;
-	Database database;
+	//Database database;
 	
-	//private static final String url = "jdbc:mysql://sql3.freemysqlhosting.net:3306/sql339866";
-	//private static final String user = "sql339866";
-	//private static final String password = "kL5!cS2!";
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
 		context = this;
-		database = Database.getInstance(this);
+		//database = Database.getInstance(this);
+		
+		Thread greetingServer = new Thread(new SingleThreadedServer(context));
+		greetingServer.start();
 		
 		Button start = (Button) findViewById(R.id.startButton);
 		start.setOnClickListener(new View.OnClickListener() {
@@ -41,13 +40,22 @@ public class MainActivity extends Activity {
 				Intent intent = new Intent(MainActivity.this, CategoriesActivity.class);
 				startActivity(intent);
 				//populateDB();
+				/*
 				database.selectSport();
+				database.selectTraffic();
+				database.selectWeather();
+				database.seectCinema();
+				database.selectNotices();
+				database.selectHolidays();
+				database.selectFreeTime();
+				*/
 			}
 		});
 
 	}
 
 	public void populateDB(){
+		/*
 		Sport sport = new Sport(2, "S-au pus in vanzare biletele pentru meciul Steaua-Astra de vineri 23 mai 2014" , 2);
 		
 		Weather weather1 = new Weather(1, "Cod portocaliu in 5 judete din tara. Sunt asteptate precipitatii abundente", 1);
@@ -67,11 +75,10 @@ public class MainActivity extends Activity {
 		
 		Notices notices1 = new Notices(1, "Statul Roman recomanda cetatenilor sa nu calatoreasca in Ucraina in perioada urmatoare", 1);
 		Notices notices2 = new Notices(2, "Ministerul Educatiei anunta noi schimbari pentru urmatorul an scolar", 2);
-		
-		Foreign foreign1 = new Foreign(1, "Relatii tensionate intre Rusia si Ucraina", 1);
-		Foreign foreign2 = new Foreign(2, "Romanii sunt mai aproape de a calatori fara viza in America", 2);
+		*/
 		
 		//add entries to database
+		/*
 		database.addSport(sport);
 		
 		database.addWeather(weather1);
@@ -91,11 +98,9 @@ public class MainActivity extends Activity {
 		
 		database.addNotices(notices1);
 		database.addNotices(notices2);
-		
-		database.addForeign(foreign1);
-		database.addForeign(foreign2);
-		
-		Log.d("Sport: ", sport.toString());
+		*/
+
+		//Log.d("Sport: ", sport.toString());
 		
 		
 	}

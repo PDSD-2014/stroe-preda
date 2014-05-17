@@ -1,42 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <categories>
     <category>
-        <name>Notices</name>
-        <description>Important</description>
+        <name>Notices </name>
+        <description>Important </description>
         <picture>exc</picture>
     </category>
     <category>
-        <name>Cinema</name>
-        <description>Premieres</description>
+        <name>Cinema </name>
+        <description>Premieres </description>
         <picture>film</picture>
     </category>
     <category>
-        <name>Foreign</name>
-        <description>Abroad news</description>
-        <picture>foreign</picture>
-    </category>
-    <category>
-        <name>Free Time</name>
-        <description>Leisure</description>
+        <name>Leisure </name>
+        <description>Free Time </description>
         <picture>free_time</picture>
     </category>
     <category>
-        <name>Holidays</name>
-        <description>Days off</description>
+        <name>Holidays </name>
+        <description>Days off </description>
         <picture>calendar</picture>
     </category>
     <category>
-        <name>Traffic</name>
+        <name>Traffic </name>
         <description>Road news</description>
         <picture>traffic</picture>
     </category>
     <category>
-        <name>Weather</name>
-        <description>F</description>
+        <name>Weather </name>
+        <description>Forecast </description>
         <picture>weather</picture>
     </category>
     <category>
-        <name>Sport</name>
+        <name>Sport </name>
         <description>News &amp; Results</description>
         <picture>ball</picture>
     </category>                              

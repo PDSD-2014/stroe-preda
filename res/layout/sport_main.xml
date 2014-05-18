@@ -11,7 +11,10 @@
         android:id="@+id/sportText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sport_screen" />
+        android:text="@string/sport_screen"
+        android:textColor="#0099cc"
+        android:textSize="25sp"
+        android:textStyle="bold" />
   
     <ListView
         android:id="@+id/listViewCat"
@@ -27,6 +30,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Get greeting" />
+        android:text="@string/back" />
     
 </RelativeLayout>

@@ -90,7 +90,8 @@ public class CinemaActivity extends Activity {
 		 
 					@Override
 					public void onClick(View v) {
-						
+						setResult(RESULT_OK);
+						finish();
 					}	
 				});
  

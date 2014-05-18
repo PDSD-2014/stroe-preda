@@ -60,6 +60,7 @@ public class MainActivity extends Activity {
 		
 		Weather weather1 = new Weather(1, "Cod portocaliu in 5 judete din tara. Sunt asteptate precipitatii abundente", 1);
 		Weather weather2 = new Weather(2, "Se anunta o vara secetoasa. Temperaturile vor depasi mediile anuale in toate regiunile tarii", 2);
+		Weather weather3 = new Weather(3, "Sfarsit de saptamana fara nori si cu soare", 2);
 		
 		Traffic traffic1 = new Traffic(1, "Traficul pe Calea Victoriei este ingreunat din cauza lucrarilor de amenajare", 1);
 		Traffic traffic2 = new Traffic(2, "Transalpina si Transfagarasan se vor deschide circulatiei pe 1 iunie", 2);
@@ -101,7 +102,7 @@ public class MainActivity extends Activity {
 		*/
 
 		//Log.d("Sport: ", sport.toString());
-		
+		//database.addWeather(weather3);
 		
 	}
 	@Override

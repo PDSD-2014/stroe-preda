@@ -74,9 +74,6 @@ public class SportActivity extends Activity {
 							ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,
 						              android.R.layout.simple_list_item_1, android.R.id.text1, listresponse);
 							responseListView.setAdapter(adapter); 
-							// Set the contents of the text field to the received response.
-							//responseListView.set
-							//setText(response);
 						}
 						
 					}
@@ -93,7 +90,8 @@ public class SportActivity extends Activity {
 		 
 					@Override
 					public void onClick(View v) {
-						
+						setResult(RESULT_OK);
+						finish();
 					}	
 				});
  

@@ -15,9 +15,6 @@ public class Database extends SQLiteOpenHelper {
 	public static final String DATABASE_NAME = "eventNotifier";
 	public static final int DATABASE_VERSION = 1;
 
-	public static final String TEACHERS_TABLE_NAME = "teachers";
-	public static final String TEACHER_ID = "teacher_id";
-	public static final String TEACHER_NAME = "name";
 	
 	public static final String SPORT_TABLE_NAME = "sport";
 	public static final String SPORT_ID = "id";
@@ -228,18 +225,7 @@ public class Database extends SQLiteOpenHelper {
 		db.close();
 	}
 	
-	/*public void addTeacher(Teacher teacher) {
-		SQLiteDatabase db = this.getWritableDatabase();
-		
-		ContentValues contentValues = new ContentValues();
-		contentValues.put(TEACHER_ID, teacher.getTeacherId());
-		contentValues.put(TEACHER_NAME, teacher.getName());
-		
-		db.insert(TEACHERS_TABLE_NAME, null, contentValues);
-		
-		db.close();
-	}*/
-	
+
 	public List<Sport> selectSport(){
 		SQLiteDatabase db = this.getReadableDatabase();
 		String SELECT_SPORT_QUERY;
@@ -394,50 +380,7 @@ public class Database extends SQLiteOpenHelper {
 		
 	}
 		
-	/*public List<Teacher> selectTeachers(int courseId) {
-		SQLiteDatabase db = this.getReadableDatabase();
-		String SELECT_TEACHERS_QUERY;
-		if (courseId != -1)
-			SELECT_TEACHERS_QUERY = "SELECT t." + TEACHER_ID + ", " + TEACHER_NAME + " FROM " + TEACHERS_TABLE_NAME + " t, " + ASSOCIATIONS_COURSE_TEACHER_TABLE_NAME + " act"
-				+ " WHERE act." + COURSE_ID + "=" + courseId + " AND t." + TEACHER_ID + " = act." + TEACHER_ID;
-		else
-			SELECT_TEACHERS_QUERY = "SELECT * FROM " + TEACHERS_TABLE_NAME;
-		
-		Log.d("MY_TAG", SELECT_TEACHERS_QUERY);
-		Cursor cursor = db.rawQuery(SELECT_TEACHERS_QUERY, null);
-		ArrayList<Teacher> result = new ArrayList<Teacher>();
-		if (cursor.moveToFirst()) {			
-			do {
-				Teacher teacher = new Teacher();
-				teacher.setTeacherId(Integer.parseInt(cursor.getString(0)));
-				teacher.setName(cursor.getString(1));
-				result.add(teacher);
-			} while (cursor.moveToNext());
-		}
-		return result;
-	}
-	
-	public List<Course> selectCourses(int teacherId) {
-		SQLiteDatabase db = this.getReadableDatabase();
-		String SELECT_COURSES_QUERY;
-		if (teacherId != -1)
-			SELECT_COURSES_QUERY = "SELECT c." + COURSE_ID + ", "+ COURSE_NAME + " FROM " + COURSES_TABLE_NAME + " c, " + ASSOCIATIONS_COURSE_TEACHER_TABLE_NAME + " act"
-				+ " WHERE act." + TEACHER_ID + "=" + teacherId + " AND c." + COURSE_ID + " = act." + COURSE_ID;
-		else
-			SELECT_COURSES_QUERY = "SELECT * FROM " + COURSES_TABLE_NAME; 
-		Cursor cursor = db.rawQuery(SELECT_COURSES_QUERY, null);
-		ArrayList<Course> result = new ArrayList<Course>();
-		if (cursor.moveToFirst()) {
-			do {
-				Course course = new Course();
-				course.setCourseId(Integer.parseInt(cursor.getString(0)));
-				course.setName(cursor.getString(1));
-				result.add(course);
-			} while (cursor.moveToNext());
-		}
-		return result;
-	}	
-	*/
+
 	public int generateNextId(String tableName, String primaryKeyName) {
 		SQLiteDatabase db = this.getReadableDatabase();
 		String SELECT_MAX_ID_FROM_TABLE = "SELECT MAX(" + primaryKeyName + ") FROM " + tableName;

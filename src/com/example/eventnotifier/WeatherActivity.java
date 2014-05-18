@@ -19,7 +19,7 @@ import android.widget.Toast;
  
 public class WeatherActivity extends Activity {
 	private final static String TAG = "CinemaActivity";
- 
+	 
 	Activity context;
  
 	@Override

@@ -1,15 +1,8 @@
 package com.example.eventnotifier;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.Statement;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +10,15 @@ import android.widget.Button;
 public class MainActivity extends Activity {
 	
 	Activity context;
+	SingleThreadedServer sts;
 	//Database database;
+	
+	@Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+        sts.onDestroy();
+    }
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,8 @@ public class MainActivity extends Activity {
 		context = this;
 		//database = Database.getInstance(this);
 		
-		Thread greetingServer = new Thread(new SingleThreadedServer(context));
+		sts = new SingleThreadedServer(context);
+		Thread greetingServer = new Thread(sts);
 		greetingServer.start();
 		
 		Button start = (Button) findViewById(R.id.startButton);
@@ -56,7 +58,9 @@ public class MainActivity extends Activity {
 
 	public void populateDB(){
 		/*
-		Sport sport = new Sport(2, "S-au pus in vanzare biletele pentru meciul Steaua-Astra de vineri 23 mai 2014" , 2);
+		Sport sport1 = new Sport(1, "O noua retragere pentru Simona Halep" , 2);
+		Sport sport2 = new Sport(2, "S-au pus in vanzare biletele pentru meciul Steaua-Astra de vineri 23 mai 2014" , 2);
+		Sport sport3 = new Sport(3, "Romania campiona europeana pe echipe la gimnastica" , 2);
 		
 		Weather weather1 = new Weather(1, "Cod portocaliu in 5 judete din tara. Sunt asteptate precipitatii abundente", 1);
 		Weather weather2 = new Weather(2, "Se anunta o vara secetoasa. Temperaturile vor depasi mediile anuale in toate regiunile tarii", 2);
@@ -76,11 +80,13 @@ public class MainActivity extends Activity {
 		
 		Notices notices1 = new Notices(1, "Statul Roman recomanda cetatenilor sa nu calatoreasca in Ucraina in perioada urmatoare", 1);
 		Notices notices2 = new Notices(2, "Ministerul Educatiei anunta noi schimbari pentru urmatorul an scolar", 2);
-		*/
+		
 		
 		//add entries to database
-		/*
-		database.addSport(sport);
+		
+		database.addSport(sport1);
+		database.addSport(sport2);
+		database.addSport(sport3);
 		
 		database.addWeather(weather1);
 		database.addWeather(weather2);
@@ -99,11 +105,11 @@ public class MainActivity extends Activity {
 		
 		database.addNotices(notices1);
 		database.addNotices(notices2);
-		*/
+		
 
 		//Log.d("Sport: ", sport.toString());
-		//database.addWeather(weather3);
-		
+		database.addWeather(weather3);
+		*/
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

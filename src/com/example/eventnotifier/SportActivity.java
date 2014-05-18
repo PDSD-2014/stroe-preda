@@ -19,7 +19,7 @@ import android.widget.Toast;
  
 public class SportActivity extends Activity {
 	private final static String TAG = "MainActivity";
- 
+	 
 	Activity context;
  
 	@Override

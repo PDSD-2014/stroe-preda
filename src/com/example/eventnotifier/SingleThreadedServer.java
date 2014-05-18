@@ -12,9 +12,7 @@ import android.app.Activity;
 import android.util.Log;
 
 	public class SingleThreadedServer implements Runnable {
-		private String greeting = "Hello world";
-		int step = 0;
-		boolean ok = true;
+		public boolean ok = true;
 		
 		Activity context;
 		Database database;
@@ -23,6 +21,15 @@ import android.util.Log;
  
 		// For a TCP connection (i.e. a server) we need a ServerSocket
 		private ServerSocket in;
+		
+		public void onDestroy(){
+			try {
+				ok = false;
+				in.close();
+			} catch (IOException e) {
+				Log.e(TAG, "Cannot clos socket. Due to: " + e.getMessage());
+			}
+		}
 		
  
 		// In the constructor we try creating the server socket, on port 9000.
@@ -155,7 +162,7 @@ import android.util.Log;
 					}}).start();
 							
 			} catch (IOException e) {
-				Log.e(TAG, "Error when accepting connection.");
+				Log.d(TAG, "No accepting connection.");
 			}
 			
 

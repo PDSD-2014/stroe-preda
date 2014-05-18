@@ -21,7 +21,7 @@ public class CinemaActivity extends Activity {
 	private final static String TAG = "CinemaActivity";
  
 	Activity context;
- 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate."); 

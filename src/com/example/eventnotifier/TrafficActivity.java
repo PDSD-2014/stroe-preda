@@ -19,7 +19,7 @@ import android.widget.Toast;
  
 public class TrafficActivity extends Activity {
 	private final static String TAG = "TrafficActivity";
- 
+	 
 	Activity context;
  
 	@Override

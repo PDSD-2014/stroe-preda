@@ -19,9 +19,9 @@ import android.widget.Toast;
  
 public class FreeTimeActivity extends Activity {
 	private final static String TAG = "FreeTimeActivity";
- 
+	 
 	Activity context;
- 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate."); 

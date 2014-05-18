@@ -19,7 +19,7 @@ import android.widget.Toast;
  
 public class HolidaysActivity extends Activity {
 	private final static String TAG = "HolidaysActivity";
- 
+	 
 	Activity context;
  
 	@Override
